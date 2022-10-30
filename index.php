@@ -116,6 +116,64 @@
                 </div>
             </div>
 
+            <!-- desain table listnya nanti setelah form selesai -->
+            <div class="card">
+                <div class="card-body">
+
+                    <!-- TABLE CONNECTION nanti setelah form selesai -->
+
+
+                    <!-- Cut dari atas -->
+                    <?php
+                    $connection = mysqli_connect("localhost", "root", "");
+                    $db = mysqli_select_db($connection, 'phpcrudbdl');
+
+                    $query = "SELECT * FROM student";
+                    $query_run = mysqli_query($connection, $query);
+
+                    ?>
+
+                    <!-- Format Tablenya -->
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">First Name</th>
+                                <th scope="col">Last Name</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+
+                        <?php
+                        if ($query_run) {
+                            foreach ($query_run as $row) {
+                        ?>
+                                <tbody>
+                                    <tr>
+                                        <td><?php echo $row['id']; ?></td>
+                                        <td><?php echo $row['fname']; ?></td>
+                                        <td><?php echo $row['lname']; ?></td>
+                                        <td><?php echo $row['course']; ?></td>
+                                        <td><?php echo $row['contact']; ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-succes editbtn"> Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                        <?php
+                            }
+                        } else {
+                            echo "No record Found";
+                        }
+
+                        ?>
+                    </table>
+                </div>
+            </div>
 
 
 
